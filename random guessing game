@@ -1,0 +1,51 @@
+# generating computer data 
+    
+import random
+
+playagain = True
+
+while playagain == True:
+    
+    computer_number = random.randint(1, 10)
+
+    print(computer_number) 
+
+
+    # Game begins
+
+    chance = 1
+
+    while chance <= 5:
+
+    # fetching the data from user
+
+        user_number = int(input("please choose a number from 1 to 10"))
+
+
+    # checking the data and running game code 
+
+        if user_number <= 10 and user_number >= 1:
+
+            if user_number == computer_number:      
+                print(f"Congratulation you win in attempt: {chance}. ")
+                break
+                playagain = False
+            elif user_number > computer_number:
+                print("Too high, try again")
+            elif user_number < computer_number:
+                print("Too low, try again")
+                
+            if chance == 5:
+                print(f"Game Over! Correct answer was {computer_number}")
+                user_choice = input("Do you wish to play again? Yes or No").lower()
+                if user_choice != "yes":
+                    playagain = False
+                    print("Thanks for playing! Have a good day")
+            chance = chance + 1
+
+        elif user_number > 10:
+            print("you have choosen a higher number than 10, choose from 1 to 10")
+
+        elif user_number < 1:
+            print("your number is too low, choose higher than 1 and upto 10")
+
