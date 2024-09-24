@@ -1,0 +1,76 @@
+# defining the class with no main atrribute
+
+class BankAccount:
+
+# defining the function for assigning the values to each object's attribute in the class
+
+    def __init__(self, account_number, account_holder):
+        self.account_number = account_number
+        self.account_holder = account_holder
+        self.amount = 0.0
+
+# defining the methods of the objects' attribute - "balance"
+
+    def deposit(self, x):
+        self.amount = x + self.amount
+        
+    def withdraw(self, y):
+        if y > self.amount:
+            print("Sorry, Insufficient Amount")
+        else:
+            self.amount = self.amount - y
+            print(f"{y} amount debited from {self.account_number}")
+            
+    def getbalance(self):
+        print(self.amount)
+
+class Bank:
+    
+    def __init__(self):
+        self. accounts= {}
+        
+    def create_account(self, account_number, account_holder):
+        if account_number in self.accounts:
+            print(f" account number: {account_number} already exists")
+        else: 
+            self.accounts[account_number] = BankAccount(account_number, account_holder)
+            print("Account created")
+            
+    def find_account(self, account_number):
+        for key, value in self.accounts.items():
+            if key == account_number:
+                return key, value
+        print(f"No account found with number {account_number}")
+        return None
+    
+    def deposit_to_account(self, account_number, amount):
+        for key in self.accounts.keys():
+            if key == account_number:
+                self.accounts[key].deposit(amount)
+                print(f"{amount} deposited to {account_number}")
+        
+    def withdraw_from_account(self, account_number, amount):
+        for key in self.accounts.keys():
+            if key == account_number:
+                self.accounts[key].withdraw(amount)
+                
+        
+    def get_account_balance(self, account_number):
+        for key in self.accounts.keys():
+            if key == account_number:
+                self.accounts[key].getbalance()
+                
+my_bank = Bank() # object of Bank class
+
+
+my_bank.create_account(12345, "Joey")
+my_bank.create_account(13349, "Ross")
+
+my_bank.deposit_to_account(12345, 10000)
+my_bank.withdraw_from_account(13349, 100)
+my_bank.withdraw_from_account(12345, 100)
+
+
+my_bank.find_account(1234578)
+
+my_bank.get_account_balance(12345)
